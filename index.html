@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Book Shop</title>
+
+</head>
+<body onload="onInit()">
+
+    <h1>My Book Shop</h1>
+
+    <button class="add-boog" onclick="onAddBook()">Add Book</button>
+
+    <input type="text" id="searchInput" oninput="onSearchBook()" placeholder="Search by title"/>
+    <button id="SearBtn" onclick="onSearchBook()">Search</button>
+    <button id="clearBtn" onclick="clearSearch()">cleaning</button>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- render thead -->
+        </tbody>
+    </table>
+
+    <p id="noBooksMessage">No matching books were found...</p>
+
+    <div id="successMessage">Operation performed successfully!</div>
+
+    <div id="bookDetailsModal" >
+        <div class="modal-content">
+            <span onclick="closeModal()" class="close">&times;</span>
+            <h2 id="bookTitle"></h2>
+            <p id="bookPrice"></p>
+            <!-- <img src="img/default.jpg" id="bookImg" alt="Book Image" /> -->
+        </div>
+    </div>
+
+    <footer>
+        <p id="expensiveCount">0</p>
+        <p id="averageCount"> 0</p>
+        <p id="cheapCount"> 0</p>
+    </footer>
+
+
+    <script src="js/storage.service.js"></script>
+    <script src="js/book-service.js"></script>
+    <script src="js/book-controller.js"></script>
+</body>
+</html>
