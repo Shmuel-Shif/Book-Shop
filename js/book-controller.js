@@ -34,6 +34,7 @@ function render() {
         `
         bookTableBod.appendChild(row)
     })
+    removeBook(bookId)
   }
 }
 
@@ -76,11 +77,12 @@ function onShowDetails(bookId) {
     if (book) {
         document.getElementById('bookTitle').innerHTML = `<span class="title-modal">Title:</span> ${book.title}`
         document.getElementById('bookPrice').innerHTML = `Price: ${book.price}&#8362;`
-        // document.getElementById('bookImg').src = book.img || 'img/default.jpg'
-
-        document.getElementById("bookDetailsModal").style.display = 'none'
+        
+        const bookImg = document.getElementById('bookImg')
+        bookImg.src = 'img/NaN.jpg'
+        bookImg.alt = `Image of ${book.title}`
+        document.getElementById("bookDetailsModal").style.display = 'block'
     }
-    document.getElementById("bookDetailsModal").style.display = 'block'
 }
 
 function closeModal() {
@@ -97,6 +99,7 @@ function onSearchBook() {
 function clearSearch() {
     document.getElementById('searchInput').value = ''
     filteredBooks = allBooks
+    onSearchBook()
     render()
 }
 

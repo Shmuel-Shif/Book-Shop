@@ -121,7 +121,7 @@ td {
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    height: 55%;
     max-width: 600px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -131,6 +131,10 @@ td {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+#bookImg { 
+   width: 40%;
 }
 
 .close {
