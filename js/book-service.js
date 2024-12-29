@@ -23,12 +23,12 @@ function updateBookPrice(bookId, newPrice) {
     }
 }
 
-function addBook(title, price,) {
+function addBook(title, price, imgUrl) {
     const newBook = {
         id: 'b' + (books.length + 1),
         title,
         price,
-        imgUrl: 'img/NaN.jpg'
+        imgUrl: imgUrl || 'img/NaN.jpg'
     }
     books.push(newBook)
     _saveBooks(books)

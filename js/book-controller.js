@@ -57,13 +57,14 @@ function onUpdateBook(bookId) {
   
 function onAddBook() {
     const title = prompt('Enter book title:')
-    const price = parseFloat(prompt('Enter book price:'))
+    const price = +prompt('Enter book price:')
+    const imgUrl = prompt('Enter book link img:') 
 
     if (!title || isNaN(price) || price <= 0) {
         alert('Please provide a valid title and price.')
         return
     }
-        addBook(title,price)
+        addBook(title, price, imgUrl)
         filteredBooks = [...books]
         showSuccessMessage()
         calculateStatistics()
@@ -79,7 +80,7 @@ function onShowDetails(bookId) {
         document.getElementById('bookPrice').innerHTML = `Price: ${book.price}&#8362;`
         
         const bookImg = document.getElementById('bookImg')
-        bookImg.src = 'img/NaN.jpg'
+        bookImg.src = book.imgUrl || 'img/NaN.jpg'
         bookImg.alt = `Image of ${book.title}`
         document.getElementById("bookDetailsModal").style.display = 'block'
     }
@@ -90,13 +91,14 @@ function closeModal() {
 }
 
 function onSearchBook() {
+    
     const searchTerm = document.getElementById('searchInput').value.toLowerCase()
     filteredBooks = allBooks.filter(book => book.title.toLowerCase().includes(searchTerm))
 
     render()
 }
 
-function clearSearch() {
+function onClearSearch() {
     document.getElementById('searchInput').value = ''
     filteredBooks = allBooks
     onSearchBook()
@@ -106,8 +108,9 @@ function clearSearch() {
 function onSearchBook() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase()
 
-    filteredBooks = books.filter(book => book.title.toLowerCase().includes(searchTerm))
-
+    filteredBooks = searchTerm 
+    ? books.filter(book => book.title.toLowerCase().includes(searchTerm))
+    : [...books]
     render()
 }
 

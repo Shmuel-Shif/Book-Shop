@@ -20,16 +20,19 @@ function getBooks() {
               id: 'b1',
               title: 'The Adventures of Lori Ipsi',
               price: 120,
+              imgUrl: 'img/Lori Ipsi.jpg'
             },
             {
               id: 'b2',
               title: 'World Atlas',
               price: 300,
+              imgUrl: 'img/World Atlas.jpg'
             },
             {
               id: 'b3',
               title: 'Zorda the Greek',
               price: 87,
+              imgUrl: 'img/Zorda the Greek.jpg'
             },
             
         ]

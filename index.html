@@ -14,9 +14,9 @@
 
     <button class="add-boog" onclick="onAddBook()">Add Book</button>
 
-    <input type="text" id="searchInput" oninput="onSearchBook()" placeholder="Search by title"/>
+    <input type="text" id="searchInput"  placeholder="Search by title"/>
     <button id="SearBtn" onclick="onSearchBook()">Search</button>
-    <button id="clearBtn" onclick="clearSearch()">Cleaning</button>
+    <button id="clearBtn" onclick="onClearSearch()">Cleaning</button>
 
 
     <table>
@@ -50,8 +50,7 @@
         <p id="averageCount"> 0</p>
         <p id="cheapCount"> 0</p>
     </footer>
-
-
+    
     <script src="js/storage.service.js"></script>
     <script src="js/book-service.js"></script>
     <script src="js/book-controller.js"></script>

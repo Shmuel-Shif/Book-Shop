@@ -134,7 +134,8 @@ td {
 }
 
 #bookImg { 
-   width: 40%;
+    width: auto;
+   height: 270px;
 }
 
 .close {
