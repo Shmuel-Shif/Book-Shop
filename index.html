@@ -6,25 +6,80 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="css/style.css">
     <title>Book Shop</title>
-
+    
 </head>
 <body onload="onInit()">
-
+    
     <h1>My Book Shop</h1>
-
+    
     <button class="add-boog" onclick="onAddBook()">Add Book</button>
-
-    <input type="text" id="searchInput"  placeholder="Search by title"/>
+    <div id="bookEditModal" class="modal">
+        <div class="modalAdd-content">
+            <h2 id="modalTitle">Add / Edit Book</h2>
+            
+            
+            <label for="bookTitleInput"><span class="titlesAdd">Title:</span></label>
+            <input class="iteminput" type="text" id="bookTitleInput" placeholder="book name" required>
+            <br>
+            <label for="bookPriceInput"><span class="titlesAdd">Price:</span></label>
+            <input class="iteminput" type="number" id="bookPriceInput" placeholder="book price" min="0" required>          
+            <br>
+            <label for="bookImgInput"><span class="titlesAdd">Image URL:</span></label>
+            <input class="iteminput" type="text" id="bookImgInput" placeholder="Enter image URL">
+            <br>
+            <label for="bookRatingInput"><span class="titlesAdd">Rating:</span></label>
+            <input class="iteminput" type="number" id="bookRatingInput" step="0.5" min="0" max="5" required>
+            
+            <div class="modal-actions">
+                <button type="button" onclick="saveBook()">Save</button>
+                <button type="button" onclick="closeBookEditModal()">Cancel</button>
+                
+            </div>
+            <div id="error-message"></div>
+       </div>
+    </div>
+    
+    <input type="text" id="searchInput" placeholder="Search by title"/>
     <button id="SearBtn" onclick="onSearchBook()">Search</button>
     <button id="clearBtn" onclick="onClearSearch()">Cleaning</button>
+    
+    <input type="number" id="ratingFilter" placeholder="Stars" min="0" max="5" step="0.5" oninput="onFilterBooks()">
+    <select id="ratingFilter">
+        <option class="ratingFilterStar" value="0">All Ratings</option>
+        <option class="ratingFilterStar" value="1">1 ⭐</option>
+        <option class="ratingFilterStar" value="2">2 ⭐</option>
+        <option class="ratingFilterStar" value="3">3 ⭐</option>
+        <option class="ratingFilterStar" value="4">4 ⭐</option>
+        <option class="ratingFilterStar" value="5">5 ⭐</option>
+    </select>
+    <button id="clearFilterBtn">Clear Filter</button>
 
+    <div id="sortOptions">
+        <label>
+            <input type="radio" name="sortOrder" value="asc" onchange="onSortBooks()" checked> Ascending
+        </label>
+        <label>
+            <input type="radio" name="sortOrder" value="desc" onchange="onSortBooks()"> Descending
+        </label>
+        <label>
+            <input type="radio" name="sortField" value="title" onchange="onSortBooks()"> Title
+        </label>
+        <label>
+            <input type="radio" name="sortField" value="price" onchange="onSortBooks()"> Price
+        </label>
+        <label>
+            <input type="radio" name="sortField" value="rating" onchange="onSortBooks()"> Rating
+        </label>
+    </div>
+    
 
     <table>
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Actions</th>
+                <th id="titleHeader" onclick="onSortColumn('title')">Title</th>
+                <th id="priceHeader" onclick="onSortColumn('price')">Price</th>
+                <th id="ratingHeader" onclick="onSortColumn('rating')">Rating</th>
+                <th id="optionsHeader">Options</th>
             </tr>
         </thead>
         <tbody>
@@ -37,19 +92,31 @@
     <div id="successMessage">Operation performed successfully!</div>
 
     <div id="bookDetailsModal" >
-        <div class="modal-content">
+        <div class="modalDetlais-content">
             <span onclick="closeModal()" class="close">&times;</span>
-            <h2 id="bookTitle"></h2>
+        <div class="grid-container">    
+            <h2 id="bookTitle"></h2>  
             <p id="bookPrice"></p>
+            <p id="bookRating"></p>
             <img src="" id="bookImg" alt="Book Image" />
+            <p class="lorem-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab unde ad, assumenda illo asperiores est quae veritatis voluptas obcaecati dolorum? Ipsam esse voluptatem dolorum obcaecati tenetur ab minus facere voluptate quam illum iusto quo delectus cumque nemo omnis et, veniam amet ratione eum id pariatur. Repellendus, distinctio, enim nisi at perspiciatis corrupti deserunt reiciendis aspernatur laboriosam tempora, animi asperiores magni! Vitae expedita nulla dolor quas tenetur explicabo. Ullam non assumenda nesciunt optio culpa voluptatem iste amet? Provident voluptatum quibusdam corrupti pariatur totam ratione. Sed laboriosam, qui molestiae laborum praesentium mollitia assumenda magnam! Fugiat fugit perferendis ullam, assumenda nobis, odit quo iste voluptas, vitae dolore iure repellat quae error officia necessitatibus temporibus totam! Aspernatur non porro dolorum,
+            </p>
         </div>
     </div>
-
+    </div>
+    
     <footer>
         <p id="expensiveCount">0</p>
         <p id="averageCount"> 0</p>
         <p id="cheapCount"> 0</p>
     </footer>
+    
+    <div id="paginationControls">
+        <button id="prevPageBtn" onclick="onPrevPage()">Prev</button>
+        <span id="pageNumber">1</span>
+        <button id="nextPageBtn" onclick="onNextPage()">Next</button>
+    </div>
     
     <script src="js/storage.service.js"></script>
     <script src="js/book-service.js"></script>
